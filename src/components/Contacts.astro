@@ -1,0 +1,37 @@
+---
+import { clinic, socials } from "../data/clinic";
+import CallButton from "./CallButton.astro";
+---
+<section id="contacts" class="section contacts" data-rec="R-007,GA-R007" aria-labelledby="contacts-title">
+  <div class="container contacts__grid">
+    <div class="contacts__main">
+      <h2 id="contacts-title" class="section__title">Як записатись і де нас знайти</h2>
+      <a class="phone contacts__phone" href={clinic.phone.href} data-rec="R-001"><span class="phone__num">{clinic.phone.display}</span></a>
+      <p class="contacts__hint">Гінекологія, мамологія. Час прийому погодимо телефоном.</p>
+      <CallButton />
+    </div>
+    <dl class="contacts__list">
+      <div>
+        <dt>Інший номер</dt>
+        <dd><a class="phone" href={clinic.phone2.href} data-rec="R-001"><span class="phone__num">{clinic.phone2.display}</span></a></dd>
+      </div>
+      <div>
+        <dt>E-mail</dt>
+        <dd><a class="text-link contacts__mail" href={`mailto:${clinic.email}`}>{clinic.email}</a></dd>
+      </div>
+      <div>
+        <dt>Адреса</dt>
+        <dd>
+          <p>{clinic.address}</p>
+          <a class="text-link" href={clinic.mapHref} target="_blank" rel="noopener">Прокласти маршрут (відкриється карта)</a>
+        </dd>
+      </div>
+      <div data-rec="R-005,SM-R001,MA-R007">
+        <dt>Ми в соцмережах</dt>
+        <dd class="contacts__social">
+          {socials.map((s) => <a class="text-link" href={s.href} target="_blank" rel="noopener">{s.label}<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>)}
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>

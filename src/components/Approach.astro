@@ -1,0 +1,33 @@
+---
+import { Picture } from "astro:assets";
+import cabinet from "../assets/photos/gal_1.jpg";
+import reception from "../assets/photos/gal_2.jpg";
+import lounge from "../assets/photos/gal_3.jpg";
+---
+<section id="approach" class="section approach" aria-labelledby="approach-title">
+  <div class="container approach__grid">
+    <div class="approach__text">
+      <h2 id="approach-title" class="approach__quote">«Забудьте про дискомфорт та стрес у&nbsp;кабінеті лікаря»</h2>
+      <ul class="approach__words">
+        <li>Професіоналізм, націленість на результат та розуміння.</li>
+        <li>До кожного клієнта ми підбираємо індивідуальний підхід.</li>
+        <li>Працюємо тільки на якісних, сертифікованих апаратах, виготовлених у Німеччині та США.</li>
+      </ul>
+      <p class="approach__motto">Здорова та щаслива жінка — запорука міцної сім'ї.</p>
+    </div>
+    <div class="approach__photos" data-rec="R-009">
+      <figure class="ph ph--cabinet">
+        <Picture src={cabinet} formats={["avif", "webp"]} widths={[400, 600, 824]} sizes="(min-width: 1440px) 650px, (min-width: 1024px) 46vw, 100vw" alt="Оглядовий кабінет: червоне гінекологічне крісло і відеокольпоскоп" loading="lazy" />
+        <figcaption>Оглядовий кабінет</figcaption>
+      </figure>
+      <figure class="ph ph--reception">
+        <Picture src={reception} formats={["avif", "webp"]} widths={[300, 500, 824]} sizes="(min-width: 1024px) 22vw, 50vw" alt="Рецепція клініки з бузковими стінами і вивіскою «Грація»" loading="lazy" />
+        <figcaption>Рецепція</figcaption>
+      </figure>
+      <figure class="ph ph--lounge">
+        <Picture src={lounge} formats={["avif", "webp"]} widths={[300, 500]} sizes="(min-width: 1024px) 15vw, 50vw" alt="Зала очікування з м'яким диваном" loading="lazy" />
+        <figcaption>Зала очікування</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

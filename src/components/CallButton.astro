@@ -1,0 +1,9 @@
+---
+// Primary action: always a real tel: link to the clinic's main number (I-005, I-013).
+import { clinic } from "../data/clinic";
+interface Props { label?: string; class?: string; rec?: string; wide?: boolean; aria?: string; data?: string; }
+const { label = "Зателефонувати", class: cls, rec = "R-001", wide = false, aria, data } = Astro.props;
+---
+<a class:list={["btn", { "btn--wide": wide }, cls]} href={clinic.phone.href} data-rec={rec} aria-label={aria} data-pk={data}>
+  <span>{label}</span>
+</a>

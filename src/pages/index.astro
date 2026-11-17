@@ -1,0 +1,51 @@
+---
+import { getImage } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Directions from "../components/Directions.astro";
+import Packages from "../components/Packages.astro";
+import Doctors from "../components/Doctors.astro";
+import Approach from "../components/Approach.astro";
+import Contacts from "../components/Contacts.astro";
+import Footer from "../components/Footer.astro";
+import CallBar from "../components/CallBar.astro";
+import logo from "../assets/logo.png";
+import { clinic, socials } from "../data/clinic";
+
+const icon = await getImage({ src: logo, width: 64, height: 64, format: "png" });
+const title = "Гінеколог і мамолог у Львові — клініка «Грація», Кавалерідзе, 19";
+const description = "Клініка жіночого здоров'я «Грація» у Львові: гінеколог, дитячий гінеколог, мамолог-онколог, пакети з відеокольпоскопією. Запис за телефоном 096 020 78 41.";
+
+// Structured data: only facts from client.json (no rating, hours or prices — not provided).
+const clinicLd = {
+  "@type": "MedicalClinic",
+  "@id": "#clinic",
+  name: clinic.fullName,
+  telephone: [clinic.phone.href.replace("tel:", ""), clinic.phone2.href.replace("tel:", "")],
+  email: clinic.email,
+  address: { "@type": "PostalAddress", streetAddress: "вул. Кавалерідзе, 19", addressLocality: "Львів", addressCountry: "UA" },
+  medicalSpecialty: ["Gynecologic", "Obstetric", "Oncologic"],
+
+};
+const ld = {
+  "@context": "https://schema.org",
+  "@graph": [
+    clinicLd,
+    { "@type": "Physician", name: "Зоряна Ігорівна Міллєр", description: "акушер-гінеколог, дитячий гінеколог, засновниця клініки", worksFor: { "@id": "#clinic" } },
+    { "@type": "Physician", name: "Гордій Олегович Рибчинський", description: "мамолог-онколог, пластичний хірург", worksFor: { "@id": "#clinic" } },
+  ],
+};
+---
+<Base lang="uk" title={title} description={description} icon={icon.src}>
+  <script slot="head" type="application/ld+json" data-rec="SE-R003" set:html={JSON.stringify(ld)} />
+  <Header slot="header" />
+  <Hero />
+  <Directions />
+  <Packages />
+  <Doctors />
+  <Approach />
+  <Contacts />
+  <Footer slot="footer" />
+  <CallBar slot="footer" />
+</Base>

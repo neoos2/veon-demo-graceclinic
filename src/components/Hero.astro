@@ -1,0 +1,45 @@
+---
+import { getImage } from "astro:assets";
+import portrait from "../assets/photos/founder-portrait.jpg";
+import wide from "../assets/photos/founder-wide.jpg";
+import { clinic } from "../data/clinic";
+import CallButton from "./CallButton.astro";
+import PhoneNumber from "./PhoneNumber.astro";
+
+// Art direction: vertical frame beside the headline from 768 px, a 4:3 frame under the call button on phones.
+const pW = [440, 660, 920];
+const wW = [390, 640, 920];
+const set = async (src: typeof portrait, widths: number[], format: "avif" | "webp") =>
+  (await Promise.all(widths.map(async (w) => {
+    const r = await getImage({ src, width: w, format, quality: format === "avif" ? 60 : 78 });
+    return `${r.src} ${w}w`;
+  }))).join(", ");
+const pAvif = await set(portrait, pW, "avif");
+const pWebp = await set(portrait, pW, "webp");
+const wAvif = await set(wide, wW, "avif");
+const wWebp = await set(wide, wW, "webp");
+const fallback = await getImage({ src: wide, width: 640, format: "webp", quality: 78 });
+const pSizes = "(min-width: 1440px) 440px, (min-width: 768px) 31vw, 100vw";
+---
+<section id="hero" class="hero" data-rec="R-006,GA-R004" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <h1 id="hero-title" class="hero__title" data-rec="R-008,SE-R001">Гінеколог і мамолог у&nbsp;Львові — без стресу в&nbsp;кабінеті</h1>
+      <p class="hero__lead">Клініка жіночого здоров'я «Грація»: гінекологія, мамологія і&nbsp;пакети з&nbsp;відеокольпоскопією.</p>
+      <div class="booking" data-rec="R-001">
+        <p class="booking__addr">{clinic.street}</p>
+        <PhoneNumber href={clinic.phone.href} display={clinic.phone.display} class="booking__phone" />
+        <CallButton class="booking__btn" />
+      </div>
+    </div>
+    <figure class="hero__photo" data-rec="R-011,SE-R004">
+      <picture>
+        <source media="(min-width: 768px)" type="image/avif" srcset={pAvif} sizes={pSizes} />
+        <source media="(min-width: 768px)" type="image/webp" srcset={pWebp} sizes={pSizes} />
+        <source type="image/avif" srcset={wAvif} sizes="100vw" />
+        <source type="image/webp" srcset={wWebp} sizes="100vw" />
+        <img src={fallback.src} width="920" height="690" alt="Зоряна Міллєр, засновниця клініки, з відеокольпоскопом в оглядовому кабінеті" fetchpriority="high" decoding="async" />
+      </picture>
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import { clinic, nav, socials } from "../data/clinic";
+import FutureLink from "./FutureLink.astro";
+const year = 2026;
+---
+<footer class="site-footer" data-rec="R-010">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <p class="site-footer__word">Грація</p>
+        <p>клініка жіночого здоров'я</p>
+      </div>
+      <address class="site-footer__contacts">
+        <p>{clinic.address}</p>
+        <p><a class="phone" href={clinic.phone.href}><span class="phone__num">{clinic.phone.display}</span></a></p>
+        <p><a class="phone" href={clinic.phone2.href}><span class="phone__num">{clinic.phone2.display}</span></a></p>
+        <p><a class="text-link" href={`mailto:${clinic.email}`}>{clinic.email}</a></p>
+      </address>
+      <ul class="site-footer__social" data-rec="R-005" aria-label="Соцмережі">
+        {socials.map((s) => <li><a class="text-link" href={s.href} target="_blank" rel="noopener">{s.label}<span class="visually-hidden"> (відкриється в новій вкладці)</span></a></li>)}
+      </ul>
+    </div>
+    <div class="site-footer__bottom">
+      <nav aria-label="Розділи сторінки (підвал)">
+        <ul class="site-footer__nav">
+          {nav.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+        </ul>
+      </nav>
+      <FutureLink class="site-footer__policy">Політика конфіденційності</FutureLink>
+      <p class="site-footer__copy">© {year} «Грація»</p>
+    </div>
+  </div>
+</footer>

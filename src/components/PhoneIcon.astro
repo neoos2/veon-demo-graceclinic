@@ -1,0 +1,8 @@
+---
+// Handset glyph, inherits text colour. Decorative: the parent link carries the label.
+interface Props { size?: number; }
+const { size = 20 } = Astro.props;
+---
+<svg class="icon" width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6.6 3.5h-2a1.5 1.5 0 0 0-1.5 1.6c.6 8.2 7.6 15.2 15.8 15.8a1.5 1.5 0 0 0 1.6-1.5v-2a1.5 1.5 0 0 0-1.1-1.4l-3.1-.9a1.5 1.5 0 0 0-1.5.4l-1.2 1.2a12 12 0 0 1-5.6-5.6l1.2-1.2a1.5 1.5 0 0 0 .4-1.5L8 4.6a1.5 1.5 0 0 0-1.4-1.1Z"/>
+</svg>

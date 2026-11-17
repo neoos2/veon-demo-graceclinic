@@ -1,0 +1,71 @@
+/* Hallmark · shape: custom booking-led · genre: editorial · theme: custom · job: book · idea: "Знати наперед — склад кожного прийому й обличчя лікарів на бузку стін клініки" · vibe: "calm, literal, lilac walls, doctor's voice" · paper: #F6F2F8 · accent: #A8163F · display: Alegreya · body: Alegreya Sans · hero: lilac field, big H1, booking line with phone, founder with colposcope right · nav: logo+wordmark, 5 anchors, phone text, call button · footer: plum two-row · imagery: client photos · signature: packages comparison with marked differences · axes: light/roman-serif/chromatic-red · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: imagery (phone photos 824 px), shown no larger than their source and never full-bleed on desktop */
+/* Client design tokens from design/concept.md (veon-concept). One token system; no literal colours or font families past this file. */
+:root {
+  /* Colour — concept.md «Палітра» */
+  --color-bg: #F6F2F8;            /* paper */
+  --color-field: #DDD3EA;         /* lilac field: hero, contacts */
+  --color-field-soft: #E7DDF1;    /* mamology column, package highlight */
+  --color-text: #241A2B;          /* ink */
+  --color-muted: #5A4D63;         /* secondary text */
+  --color-rule: #C9BCD6;          /* decorative lines only */
+  --color-accent: #A8163F;        /* call button, difference marks */
+  --color-accent-hover: #86102F;  /* hover, focus ring on light */
+  --color-accent-ink: #FFF7F9;     /* text on accent */
+  --color-plum: #2A1B33;          /* approach, footer */
+  --color-on-plum: #F3ECF7;       /* text on plum */
+  --color-muted-on-plum: #C4B6CF; /* secondary text on plum */
+  --color-focus-dark: #F2A9BF;    /* focus ring on plum */
+  --color-focus: var(--color-accent-hover);
+
+  /* Type — Alegreya (display) + Alegreya Sans (text), self-hosted, cyrillic + latin */
+  --font-display: "Alegreya", "Alegreya Fallback", serif;
+  --font-body: "Alegreya Sans", "Alegreya Sans Fallback", sans-serif;
+  --text-sm: 0.9375rem;   /* 15 */
+  --text-base: 1.125rem;  /* 18 */
+  --text-md: 1.375rem;    /* 22 */
+  --text-lg: 1.75rem;     /* 28 */
+  --text-xl: 2.75rem;     /* 44 */
+  --text-display: clamp(2.6rem, 1.5rem + 4.4vw, 4.75rem);
+  --text-h2: clamp(2rem, 1.4rem + 2.2vw, 2.75rem);
+  --text-name: clamp(1.625rem, 1.3rem + 1vw, 2rem); /* 32 */
+  --leading-tight: 1.08;
+  --leading-body: 1.6;
+  --tracking-display: -0.02em;
+  --measure: 64ch;
+
+  /* Space — 4/8 scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 40px;
+  --s-7: 64px;
+  --s-8: 96px;
+  --s-9: 144px;
+  --section-y: clamp(56px, 7vw, 96px);
+
+  /* Grid */
+  --container: 1360px;
+  --gutter: 24px;
+  --space: clamp(20px, 5vw, 80px);
+  --header-h: 72px;
+
+  /* Shape */
+  --radius: 6px;
+  --rule-w: 1px;
+  --tap: 48px;
+  --logo: 44px;
+
+  /* Motion — concept.md «Рух» */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur-fast: 120ms;
+  --dur-mid: 220ms;
+  --dur: 420ms;
+  --dur-hero: 700ms;
+}
+
+@media (max-width: 767px) {
+  :root { --header-h: 64px; --logo: 40px; --dur: 300ms; }
+}

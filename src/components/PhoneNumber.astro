@@ -1,0 +1,6 @@
+---
+// Phone number as text link with lining tabular figures and a drawn underline.
+interface Props { href: string; display: string; class?: string; rec?: string; }
+const { href, display, class: cls, rec } = Astro.props;
+---
+<a class:list={["phone", cls]} href={href} data-rec={rec}><span class="phone__num">{display}</span></a>

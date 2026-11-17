@@ -1,0 +1,55 @@
+---
+import { packageCommon, packages } from "../data/clinic";
+import CallButton from "./CallButton.astro";
+const common = packageCommon.join(", ");
+---
+<section id="packages" class="section packages" data-rec="R-004" aria-labelledby="packages-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="packages-title" class="section__title">Гінекологічні пакети з відеокольпоскопією</h2>
+      <p class="section__intro">Основа в трьох пакетах однакова. Відрізняються тільки аналізи — їх позначено вишневим.</p>
+    </div>
+
+    <table class="pk-table">
+      <caption class="visually-hidden">Склад гінекологічних пакетів №1, №2 і №3</caption>
+      <thead>
+        <tr>
+          <td></td>
+          {packages.map((p) => <th scope="col" class={`pk-c pk-c${p.n}`}>Пакет №{p.n}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="pk-table__common">
+          <th scope="row">У кожному пакеті</th>
+          <td colspan="3">{common.charAt(0).toUpperCase() + common.slice(1)}</td>
+        </tr>
+        <tr class="pk-table__diff">
+          <th scope="row">Відрізняється</th>
+          {packages.map((p) => (
+            <td class={`pk-c pk-c${p.n}`}><ul class="diff">{p.diff.map((d) => <li>{d}</li>)}</ul></td>
+          ))}
+        </tr>
+        <tr class="pk-table__act">
+          <th scope="row"><span class="visually-hidden">Запис</span></th>
+          {packages.map((p) => (
+            <td class={`pk-c pk-c${p.n}`}><CallButton label={`Записатись на пакет №${p.n}`} data={String(p.n)} /></td>
+          ))}
+        </tr>
+      </tbody>
+    </table>
+
+    <ol class="pk-list">
+      {packages.map((p) => (
+        <li class="pk-card">
+          <h3 class="pk-card__title">Пакет №{p.n}</h3>
+          <p class="pk-card__label">Відрізняється</p>
+          <ul class="diff">{p.diff.map((d) => <li>{d}</li>)}</ul>
+          <p class="pk-card__common">Також у пакеті: {common}.</p>
+          <CallButton label={`Записатись на пакет №${p.n}`} wide />
+        </li>
+      ))}
+    </ol>
+
+    <p class="packages__note">Вартість і вибір пакета підкажемо телефоном.</p>
+  </div>
+</section>

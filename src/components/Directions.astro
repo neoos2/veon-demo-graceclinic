@@ -1,0 +1,52 @@
+---
+import { gynecology, mammology } from "../data/clinic";
+import FutureLink from "./FutureLink.astro";
+import CallButton from "./CallButton.astro";
+---
+<section id="directions" class="section directions" data-rec="R-004" aria-labelledby="directions-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="directions-title" class="section__title">Напрями: гінекологія і мамологія</h2>
+      <p class="section__intro">Прийоми названо так, як їх називають у клініці. Що входить в огляд, можна відкрити тут, а вільний час і вартість підкажемо телефоном.</p>
+    </div>
+    <div class="directions__grid">
+      <div class="dir dir--gyn">
+        <h3 class="dir__title">Гінекологія</h3>
+        <ul class="dir__list">
+          {gynecology.map((s, i) => (
+            <li class="dir__row" data-reveal style={`--reveal-delay:${i * 40}ms`}>
+              {s.details ? (
+                <details class="dir__more">
+                  <summary>
+                    <span class="dir__name">{s.name}</span>
+                    <span class="dir__hint">що входить<span class="dir__plus" aria-hidden="true"></span></span>
+                  </summary>
+                  <ul class="dir__parts">{s.details.map((d) => <li>{d}</li>)}</ul>
+                </details>
+              ) : (
+                <span class="dir__name">{s.name}{s.tag && <span class="tag">{s.tag}</span>}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+        <FutureLink class="dir__all">Усі послуги гінекології</FutureLink>
+      </div>
+      <div class="dir dir--mam">
+        <h3 class="dir__title">Мамологія</h3>
+        <ul class="dir__list">
+          {mammology.map((s, i) => (
+            <li class="dir__row" data-reveal style={`--reveal-delay:${i * 40}ms`}>
+              <span class="dir__name">{s.name}</span>
+              {s.note && <span class="dir__note">{s.note}</span>}
+            </li>
+          ))}
+        </ul>
+        <FutureLink class="dir__all">Усі послуги мамології</FutureLink>
+      </div>
+    </div>
+    <div class="directions__act">
+      <p>Записатися можна на будь-який прийом зі списку.</p>
+      <CallButton label="Записатись на прийом" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import { clinic, nav } from "../data/clinic";
+import CallButton from "./CallButton.astro";
+import PhoneNumber from "./PhoneNumber.astro";
+import PhoneIcon from "./PhoneIcon.astro";
+---
+<header class="site-header" data-rec="R-009">
+  <div class="container site-header__row">
+    <a class="brand" href="#top" aria-label="Грація — на початок сторінки">
+      <Image src={logo} alt="" width={88} height={88} class="brand__logo" loading="eager" />
+      <span class="brand__word">Грація</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Розділи сторінки">
+      <ul>
+        {nav.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="site-header__act">
+      <PhoneNumber href={clinic.phone.href} display={clinic.phone.display} class="site-header__phone" rec="R-001" />
+      <CallButton class="site-header__btn" />
+      <a class="icon-btn site-header__call" href={clinic.phone.href} aria-label={`Зателефонувати ${clinic.phone.display}`} data-rec="R-001">
+        <PhoneIcon size={22} />
+      </a>
+      <details class="menu" data-menu>
+        <summary class="menu__toggle">
+          <span class="menu__bars" aria-hidden="true"><span></span><span></span></span>
+          <span class="menu__label">Меню</span>
+        </summary>
+        <div class="menu__panel">
+          <nav aria-label="Меню">
+            <ul class="menu__list">
+              {nav.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+            </ul>
+          </nav>
+          <div class="menu__phones">
+            <PhoneNumber href={clinic.phone.href} display={clinic.phone.display} class="menu__phone" rec="R-001" />
+            <PhoneNumber href={clinic.phone2.href} display={clinic.phone2.display} class="menu__phone menu__phone--2" rec="R-001" />
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

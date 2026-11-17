@@ -1,0 +1,44 @@
+---
+import "../styles/tokens.css";
+import "../styles/fonts.css";
+import "../styles/global.css";
+import "../styles/site.css";
+import displayFont from "../assets/fonts/alegreya-cyrillic-wght-normal.woff2?url";
+import bodyFont from "../assets/fonts/alegreya-sans-cyrillic-400-normal.woff2?url";
+import bodyFontBold from "../assets/fonts/alegreya-sans-cyrillic-700-normal.woff2?url";
+
+interface Props { lang: string; title: string; description: string; canonical?: string; icon?: string; }
+const { lang, title, description, canonical, icon } = Astro.props;
+---
+<!doctype html>
+<html lang={lang} data-rec="R-008,SE-R002">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="uk_UA" />
+    <meta name="robots" content="noindex" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bodyFontBold} as="font" type="font/woff2" crossorigin />
+    {icon && <link rel="icon" href={icon} type="image/png" />}
+    <slot name="head" />
+    <style is:global>
+      /* Floor 34, mirrored here so the layout is safe on its own (also in global.css) */
+      html, body { overflow-x: clip; }
+    </style>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">{lang.startsWith("uk") ? "До змісту" : lang.startsWith("ru") ? "К содержанию" : "Skip to content"}</a>
+    <slot name="header" />
+    <main id="main"><slot /></main>
+    <slot name="footer" />
+    <script src="../scripts/reveal.ts"></script>
+    <script src="../scripts/ui.ts"></script>
+  </body>
+</html>

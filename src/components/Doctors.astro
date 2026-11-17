@@ -1,0 +1,39 @@
+---
+import { Picture } from "astro:assets";
+import millier from "../assets/photos/millier.jpg";
+import rybchynskyi from "../assets/photos/rybchynskyi.jpg";
+import CallButton from "./CallButton.astro";
+import FutureLink from "./FutureLink.astro";
+---
+<section id="doctors" class="section doctors" aria-labelledby="doctors-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="doctors-title" class="section__title">Хто вас прийме</h2>
+    </div>
+    <div class="doctors__grid">
+      <article class="doc doc--lead" data-reveal>
+        <Picture src={millier} formats={["avif", "webp"]} widths={[360, 558]} sizes="(min-width: 1024px) 34vw, (min-width: 768px) 45vw, 100vw" width={558} height={558} alt="Зоряна Міллєр, акушер-гінеколог, у кабінеті клініки" loading="lazy" class="doc__photo" />
+        <div class="doc__body">
+          <h3 class="doc__name">Зоряна Ігорівна Міллєр</h3>
+          <p class="doc__role">засновниця клініки</p>
+          <ul class="doc__specs"><li>акушер-гінеколог</li><li>дитячий гінеколог</li></ul>
+          <div class="doc__act">
+            <CallButton label="Записатись до лікаря" aria="Записатись до Зоряни Міллєр — зателефонувати" />
+            <FutureLink>Детальніше про лікаря</FutureLink>
+          </div>
+        </div>
+      </article>
+      <article class="doc doc--second" data-reveal style="--reveal-delay:40ms">
+        <Picture src={rybchynskyi} formats={["avif", "webp"]} widths={[360, 558]} sizes="(min-width: 768px) 360px, 100vw" width={558} height={558} alt="Гордій Рибчинський, мамолог-онколог" loading="lazy" class="doc__photo" />
+        <div class="doc__body">
+          <h3 class="doc__name">Гордій Олегович Рибчинський</h3>
+          <ul class="doc__specs"><li>мамолог-онколог</li><li>пластичний хірург</li></ul>
+          <div class="doc__act">
+            <CallButton label="Записатись до лікаря" aria="Записатись до Гордія Рибчинського — зателефонувати" />
+            <FutureLink>Детальніше про лікаря</FutureLink>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

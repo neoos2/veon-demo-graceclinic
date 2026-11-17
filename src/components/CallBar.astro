@@ -1,0 +1,9 @@
+---
+import { clinic } from "../data/clinic";
+---
+<div class="call-bar" data-callbar data-rec="R-001">
+  <a class="call-bar__link" href={clinic.phone.href}>
+    <span>Зателефонувати</span>
+    <span class="call-bar__num">{clinic.phone.short}</span>
+  </a>
+</div>
